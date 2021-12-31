@@ -1,5 +1,6 @@
 # Fast computation of soft tissue thermal response under deformation based on fast explicit dynamics finite element algorithm for surgical simulation (MIT License)
-
+[![download](https://img.shields.io/github/downloads/jinaojakezhang/FEDFEMBioheatDeform/total.svg)](https://github.com/jinaojakezhang/FEDFEMBioheatDeform/releases)
+[![LICENSE](https://img.shields.io/github/license/jinaojakezhang/FEDFEMBioheatDeform.svg)](https://github.com/jinaojakezhang/FEDFEMBioheatDeform/blob/master/LICENSE)
 ![fig1](https://user-images.githubusercontent.com/93865598/147800686-7eff7605-090f-4865-add3-94d4fd37b47d.PNG)
 
 This is the source repository for the paper:
@@ -10,6 +11,7 @@ which is based on the works of [doi:10.1016/j.ijthermalsci.2019.01.030](https://
 
 Please cite the above paper if you use this code for your research.
 
+If this code is helpful in your projects, please help to :star: this repo or recommend it to your friends. Thanks:blush:
 # Environment:
 •	Windows 10
 
@@ -35,3 +37,5 @@ Please cite the above paper if you use this code for your research.
 # Notes:
 1.	Node and Element index can start at 0, 1, or any but must be consistent in a file.
 2.	Liver_Iso.txt, node and element index start at 0; Liver_Iso_n1.txt, node and element index start at 1.
+# Feedback:
+Please send an email to jinao.zhang@hotmail.com. Thanks for your valuable feedback and suggestions.
