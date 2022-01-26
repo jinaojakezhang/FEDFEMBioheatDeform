@@ -198,19 +198,21 @@ class ModelStates
 {
 public:
     vector<float> m_external_F,          m_ele_nodal_internal_F,                        // individual ele nodal internal F to avoid race condition, can be summed to get internal_F for nodes
-                  m_disp_mag_t,          m_fixT_mag,
+                  m_disp_mag_t,
                   m_central_diff_const1, m_central_diff_const2, m_central_diff_const3,
                   m_prev_U,              m_curr_U,              m_next_U,
                   m_external_Q,          m_external_Q0,         m_ele_nodal_internal_Q, // individual ele nodal internal Q to avoid race condition, can be summed to get internal_Q for nodes
+                  m_fixT_mag,
                   m_constA,
                   m_curr_T,              m_next_T;
     vector<bool>  m_fixP_flag,           m_fixT_flag;
     ModelStates(const Model& model) :
         m_external_F         (model.m_num_M_DOFs,        0.f), m_ele_nodal_internal_F(model.m_tets.size() * 4 * 3, 0.f),
-        m_disp_mag_t         (model.m_num_M_DOFs,        0.f), m_fixT_mag            (model.m_num_T_DOFs,          0.f),
+        m_disp_mag_t         (model.m_num_M_DOFs,        0.f),
         m_central_diff_const1(model.m_num_M_DOFs,        0.f), m_central_diff_const2 (model.m_num_M_DOFs,          0.f), m_central_diff_const3 (model.m_num_M_DOFs,      0.f),
         m_prev_U             (model.m_num_M_DOFs,        0.f), m_curr_U              (model.m_num_M_DOFs,          0.f), m_next_U              (model.m_num_M_DOFs,      0.f),
         m_external_Q         (model.m_num_T_DOFs,        0.f), m_external_Q0         (model.m_num_T_DOFs,          0.f), m_ele_nodal_internal_Q(model.m_tets.size() * 4, 0.f),
+        m_fixT_mag           (model.m_num_T_DOFs,        0.f),
         m_constA             (model.m_num_T_DOFs,        0.f),
         m_curr_T             (model.m_num_T_DOFs, model.m_T0), m_next_T              (model.m_num_T_DOFs,   model.m_T0),
         m_fixP_flag          (model.m_num_M_DOFs,      false), m_fixT_flag           (model.m_num_T_DOFs,        false)
@@ -251,7 +253,7 @@ int main(int argc, char **argv)
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 Model* readModel(int argc, char **argv)
 {
-    if (argc - 1 == 0) { cerr << "\n\tError: missing input argument (e.g., model.txt)." << endl; return nullptr; }
+    if (argc - 1 == 0) { cerr << "\n\tError: missing input argument (e.g., Liver_Iso.txt)." << endl; return nullptr; }
     FILE* file;
     if (fopen_s(&file, argv[1], "r") != 0) { cerr << "\n\tError: cannot open file: " << argv[1] << endl; return nullptr; }
     else
@@ -262,7 +264,7 @@ Model* readModel(int argc, char **argv)
         fscanf_s(file, "%u %f %f %f", &idx, &x, &y, &z); model->m_node_begin_index = idx; model->m_nodes.push_back(new Node(idx - model->m_node_begin_index, x, y, z)); // for first node only, to get node begin index
         while (fscanf_s(file, "%u %f %f %f", &idx, &x, &y, &z)) { model->m_nodes.push_back(new Node(idx - model->m_node_begin_index, x, y, z)); } // internally, node index starts at 0
         fscanf_s(file, "%s", buffer, (unsigned int)sizeof(buffer)); model->m_M_material_type = buffer;
-        if (model->m_M_material_type == "NH") { float Mu(0.f), K(0.f); fscanf_s(file, "%f %f", &Mu, &K); model->m_M_material_vals.push_back(Mu); model->m_M_material_vals.push_back(K); }
+        if      (model->m_M_material_type == "NH")      { float Mu(0.f), K(0.f); fscanf_s(file, "%f %f", &Mu, &K); model->m_M_material_vals.push_back(Mu); model->m_M_material_vals.push_back(K); }
         else if (model->m_M_material_type == "other_material_types") { /*add your code here*/ }
         fscanf_s(file, "%s", buffer, (unsigned int)sizeof(buffer)); model->m_T_material_type = buffer;
         if      (model->m_T_material_type == "T_ISO")   { float c(0.f), k(0.f); fscanf_s(file, "%f %f", &c, &k); model->m_T_material_vals.push_back(c); model->m_T_material_vals.push_back(k); }
