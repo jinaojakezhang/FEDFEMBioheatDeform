@@ -25,7 +25,7 @@ If this code is helpful in your projects, please help to :star: this repo or rec
 2.	Output: T.vtk, U.vtk, and Undeformed.vtk
 ## How to visualize:
 1.	Open T.vtk and U.vtk. (such as using ParaView)
-<p align="center"><img src="https://user-images.githubusercontent.com/93865598/147800691-66567c43-9659-4f7f-9a72-3ae46178564b.PNG"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/93865598/151173899-a12903e3-0c27-4543-a957-cca6c948af10.PNG"></p>
 
 ## How to make input.txt:
 1.	Liver_Iso.inp (Abaqus input) is provided in the “models”, which was used to create Liver_Iso_n1.txt.
