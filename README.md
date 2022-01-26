@@ -1,8 +1,7 @@
 # Fast computation of soft tissue thermal response under deformation based on fast explicit dynamics finite element algorithm for surgical simulation (MIT License)
-[![download](https://img.shields.io/github/downloads/jinaojakezhang/FEDFEMBioheatDeform/total.svg)](https://github.com/jinaojakezhang/FEDFEMBioheatDeform/releases)
-[![LICENSE](https://img.shields.io/github/license/jinaojakezhang/FEDFEMBioheatDeform.svg)](https://github.com/jinaojakezhang/FEDFEMBioheatDeform/blob/master/LICENSE)
-![fig1](https://user-images.githubusercontent.com/93865598/147800686-7eff7605-090f-4865-add3-94d4fd37b47d.PNG)
-
+![GitHub](https://img.shields.io/github/license/jinaojakezhang/FEDFEMBioheatDeform)
+![GitHub top language](https://img.shields.io/github/languages/top/jinaojakezhang/FEDFEMBioheatDeform)
+<p align="center"><img src="https://user-images.githubusercontent.com/93865598/147800686-7eff7605-090f-4865-add3-94d4fd37b47d.PNG"></p>
 This is the source repository for the paper:
 
 Zhang, J., & Chauhan, S. (2020). Fast computation of soft tissue thermal response under deformation based on fast explicit dynamics finite element algorithm for surgical simulation. Computer Methods and Programs in Biomedicine, 187, 105244. [doi:10.1016/j.cmpb.2019.105244](https://www.sciencedirect.com/science/article/abs/pii/S0169260719311344).
@@ -12,30 +11,34 @@ which is based on the works of [doi:10.1016/j.ijthermalsci.2019.01.030](https://
 Please cite the above paper if you use this code for your research.
 
 If this code is helpful in your projects, please help to :star: this repo or recommend it to your friends. Thanks:blush:
-# Environment:
-•	Windows 10
-
-•	Visual Studio 2017
-
-•	OpenMP
-# How to build:
+## Environment:
+- Windows 10
+- Visual Studio 2017
+-	OpenMP
+## How to build:
 1.	Download the source repository.
 2.	Visual Studio 2017->Create New Project (Empty Project)->Project->Add Existing Item->BioheatDeform.cpp.
-3.	Project->Properties->C/C++->Language->OpenMP Support->Yes (/openmp).
+3.	Project->Properties->C/C++->Language->OpenMP Support->**Yes (/openmp)**.
 4.	Build Solution (Release/x64).
-# How to use:
-1.	(cmd)Command Prompt-> ![fig2](https://user-images.githubusercontent.com/93865598/147800688-6464dded-72c5-44e2-a883-7e72acb47030.PNG)
+## How to use:
+1.	(cmd)Command Prompt->build path>project_name.exe input.txt. Example: <p align="center"><img src="https://user-images.githubusercontent.com/93865598/151172304-1d286493-f4e7-41fa-b377-cc33f4465d99.PNG"></p>
 2.	Output: T.vtk, U.vtk, and Undeformed.vtk
-# How to visualize:
+## How to visualize:
 1.	Open T.vtk and U.vtk. (such as using ParaView)
+<p align="center"><img src="https://user-images.githubusercontent.com/93865598/147800691-66567c43-9659-4f7f-9a72-3ae46178564b.PNG"></p>
 
-![fig3](https://user-images.githubusercontent.com/93865598/147800691-66567c43-9659-4f7f-9a72-3ae46178564b.PNG)
-# Boundary condition (BC):
+## How to make input.txt:
+1.	Liver_Iso.inp (Abaqus input) is provided in the “models”, which was used to create Liver_Iso_n1.txt.
+## Material types:
+1.	Isotropic, orthotropic, and anisotropic thermal conductivities.
+2.	Neo-Hookean hyperelastic material
+## Boundary conditions (BCs):
 1.	Node index: Disp, FixP, HFlux, FixT.
 2.	Element index: Perfu, BodyHFlux.
 3.	All Elements: Gravity, Metabo.
-# Notes:
+## Notes:
 1.	Node and Element index can start at 0, 1, or any but must be consistent in a file.
-2.	Liver_Iso.txt, node and element index start at 0; Liver_Iso_n1.txt, node and element index start at 1.
-# Feedback:
+2.	Index starts at 0: *.txt.
+3.	Index starts at 1: *_n1.txt.
+## Feedback:
 Please send an email to jinao.zhang@hotmail.com. Thanks for your valuable feedback and suggestions.
